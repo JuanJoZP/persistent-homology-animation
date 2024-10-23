@@ -1,6 +1,6 @@
 # Instalation
 ```
-conda create -n my_venv manim numpy pip
+conda create -n my_venv numpy pip
 conda activate my_venv
 pip install "manim-slides[pyqt6, manim]"
 ```
