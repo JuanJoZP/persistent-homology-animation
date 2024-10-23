@@ -1,14 +1,14 @@
 from manim import *
-from math import pi, sin, cos
-from numpy import linspace
+from manim_slides import ThreeDSlide
+from math import pi
 
 # CUADRAR COLORES PUNTOS
 # BACKGROUND NEGRO
 # colores se estan invirtiendo raro
-# GRAN MALPARIDO ME HACE EL FAVOR Y ESCONDE EL EJE Z AXEZ COCK SUCKER
+# esconder eje z inicialmente
 
 
-class CreateCircle(ThreeDScene):
+class SimplicialComplex(ThreeDSlide):
 
     def construct(self):
         #self.camera.background_color = WHITE
@@ -23,9 +23,11 @@ class CreateCircle(ThreeDScene):
 
         self.add(c)
 
+        self.next_slide()
+
         point1 = Dot(color=WHITE).move_to(c.c2p(4, 1, 0))
         point2 = Dot(color=PURPLE).move_to(c.c2p(7, 1, 0))
-        self.add(point1, point2)
+        self.play([FadeIn(point1), FadeIn(point2)])
 
         circle1 = Circle(radius=1.5, color=WHITE).move_to(point1.get_center())
         circle2 = Circle(radius=1.5, color=PURPLE).move_to(point2.get_center())
@@ -33,26 +35,26 @@ class CreateCircle(ThreeDScene):
 
         self.play([GrowFromCenter(circle1), GrowFromCenter(circle2)], run_time=2)
 
-        self.wait(1)
+        self.next_slide()
 
         self.play([FadeOut(circle1), FadeOut(circle2)])
 
-        self.wait(1)
+        self.next_slide()
 
         line1 = Line(point1, point2)
         self.play(FadeIn(line1))
 
-        self.wait(1)
+        self.next_slide()
 
         point3 = Dot(color=BLUE).move_to(c.c2p(5.5, 4, 0))
         self.play(FadeIn(point3))
 
-        self.wait(1)
+        self.next_slide()
 
         circle3 = Circle(radius=1.5, color=PURPLE).move_to(point3.get_center())
         self.play([FadeIn(circle1), FadeIn(circle2), GrowFromCenter(circle3)])
 
-        self.wait()
+        self.next_slide()
 
         circle1_1 = Circle(radius=1.925, color=WHITE).move_to(point1.get_center())
         circle2_1 = Circle(radius=1.925, color=PURPLE).move_to(point2.get_center())
@@ -64,39 +66,41 @@ class CreateCircle(ThreeDScene):
             Transform(circle3, circle3_1)
         ])
 
-        self.wait(1)
+        self.next_slide()
 
         self.play([FadeOut(circle1), FadeOut(circle2), FadeOut(circle3)])
 
-        self.wait(1)
+        self.next_slide()
 
         line2 = Line(point2, point3)
         line3 = Line(point1, point3)
         self.play(FadeIn(line2), FadeIn(line3))
 
-        self.wait(1)
+        self.next_slide()
 
-        surface = Polygon(point1.get_center(),
-                          point2.get_center(),
-                          point3.get_center(),
-                          color=RED,
-                          fill_color=RED,
-                          fill_opacity=0.7)
+        surface1 = Polygon(point1.get_center(),
+                           point2.get_center(),
+                           point3.get_center(),
+                           color=RED,
+                           fill_color=RED,
+                           fill_opacity=0.7)
 
-        self.play(FadeIn(surface))
+        self.remove(line1, line2, line3)
+        self.play(FadeIn(surface1))
 
-        self.wait(2)
+        self.next_slide()
 
         self.begin_ambient_camera_rotation(pi / 6, about='phi')
-        self.wait(2)
+        self.next_slide()
         self.stop_ambient_camera_rotation(about='phi')
 
+        self.remove(point1, point2, point3)
         point4 = Dot(color=RED_A).move_to(c.c2p(5.5, 2.5, 2.5))
-        self.begin_ambient_camera_rotation(pi / 2, about='theta')
+        self.begin_ambient_camera_rotation(3 * pi / 4, about='theta')
         self.play(FadeIn(point4))
-        self.stop_ambient_camera_rotation(about='phi')
+        self.stop_ambient_camera_rotation(about='theta')
 
-        self.wait(1)
+        self.next_slide()
 
         bolas_rad = 2
         bola1 = Sphere(point1.get_center(),
@@ -128,13 +132,37 @@ class CreateCircle(ThreeDScene):
         ],
                   run_time=5)
 
-        self.wait(2)
+        self.remove(surface1)
+        self.next_slide()
+        self.add(surface1)
 
+        self.play([FadeOut(bola1), FadeOut(bola2), FadeOut(bola3), FadeOut(bola4)])
 
-# muestra ejes 3 d, monta otro punto
+        self.next_slide()
 
-# crece bolas
+        surface2 = Polygon(point4.get_center(),
+                           point2.get_center(),
+                           point3.get_center(),
+                           color=RED,
+                           fill_color=RED,
+                           fill_opacity=0.7)
 
-# conecta
+        surface3 = Polygon(point1.get_center(),
+                           point4.get_center(),
+                           point3.get_center(),
+                           color=RED,
+                           fill_color=RED,
+                           fill_opacity=0.7)
 
-# muestra tetraedro
+        surface4 = Polygon(point1.get_center(),
+                           point2.get_center(),
+                           point4.get_center(),
+                           color=RED,
+                           fill_color=RED,
+                           fill_opacity=0.7)
+
+        self.play([FadeIn(surface2), FadeIn(surface3), FadeIn(surface4)])
+
+        self.begin_ambient_camera_rotation(2 * pi, about='theta')
+        self.next_slide()
+        self.stop_ambient_camera_rotation(about="theta")
