@@ -3,8 +3,6 @@ from manim_slides import ThreeDSlide
 from math import pi
 
 # CUADRAR COLORES PUNTOS
-# BACKGROUND NEGRO
-# colores se estan invirtiendo raro
 # esconder eje z inicialmente
 
 
@@ -26,10 +24,10 @@ class SimplicialComplex(ThreeDSlide):
         self.next_slide()
 
         point1 = Dot(color=WHITE).move_to(c.c2p(4, 1, 0))
-        point2 = Dot(color=PURPLE).move_to(c.c2p(7, 1, 0))
+        point2 = Dot(color=WHITE).move_to(c.c2p(7, 1, 0))
         self.play([FadeIn(point1), FadeIn(point2)])
 
-        circle1 = Circle(radius=1.5, color=WHITE).move_to(point1.get_center())
+        circle1 = Circle(radius=1.5, color=PURPLE).move_to(point1.get_center())
         circle2 = Circle(radius=1.5, color=PURPLE).move_to(point2.get_center())
         self.add(circle1, circle2)
 
@@ -56,7 +54,7 @@ class SimplicialComplex(ThreeDSlide):
 
         self.next_slide()
 
-        circle1_1 = Circle(radius=1.925, color=WHITE).move_to(point1.get_center())
+        circle1_1 = Circle(radius=1.925, color=PURPLE).move_to(point1.get_center())
         circle2_1 = Circle(radius=1.925, color=PURPLE).move_to(point2.get_center())
         circle3_1 = Circle(radius=1.925, color=PURPLE).move_to(point3.get_center())
 
@@ -81,8 +79,8 @@ class SimplicialComplex(ThreeDSlide):
         surface1 = Polygon(point1.get_center(),
                            point2.get_center(),
                            point3.get_center(),
-                           color=RED,
-                           fill_color=RED,
+                           color=PURPLE,
+                           fill_color=PURPLE,
                            fill_opacity=0.7)
 
         self.remove(line1, line2, line3)
@@ -105,23 +103,23 @@ class SimplicialComplex(ThreeDSlide):
         bolas_rad = 2
         bola1 = Sphere(point1.get_center(),
                        bolas_rad,
-                       color=RED,
-                       fill_color=RED,
+                       color=PURPLE,
+                       fill_color=PURPLE,
                        fill_opacity=0.7)
         bola2 = Sphere(point2.get_center(),
                        bolas_rad,
-                       color=RED,
-                       fill_color=RED,
+                       color=PURPLE,
+                       fill_color=PURPLE,
                        fill_opacity=0.7)
         bola3 = Sphere(point3.get_center(),
                        bolas_rad,
-                       color=RED,
-                       fill_color=RED,
+                       color=PURPLE,
+                       fill_color=PURPLE,
                        fill_opacity=0.7)
         bola4 = Sphere(point4.get_center(),
                        bolas_rad,
-                       color=RED,
-                       fill_color=RED,
+                       color=PURPLE,
+                       fill_color=PURPLE,
                        fill_opacity=0.7)
 
         self.play([
@@ -143,22 +141,22 @@ class SimplicialComplex(ThreeDSlide):
         surface2 = Polygon(point4.get_center(),
                            point2.get_center(),
                            point3.get_center(),
-                           color=RED,
-                           fill_color=RED,
+                           color=PURPLE,
+                           fill_color=PURPLE,
                            fill_opacity=0.7)
 
         surface3 = Polygon(point1.get_center(),
                            point4.get_center(),
                            point3.get_center(),
-                           color=RED,
-                           fill_color=RED,
+                           color=PURPLE,
+                           fill_color=PURPLE,
                            fill_opacity=0.7)
 
         surface4 = Polygon(point1.get_center(),
                            point2.get_center(),
                            point4.get_center(),
-                           color=RED,
-                           fill_color=RED,
+                           color=PURPLE,
+                           fill_color=PURPLE,
                            fill_opacity=0.7)
 
         self.play([FadeIn(surface2), FadeIn(surface3), FadeIn(surface4)])
